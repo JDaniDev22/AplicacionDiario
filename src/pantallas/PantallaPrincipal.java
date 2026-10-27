@@ -46,7 +46,7 @@ public class PantallaPrincipal extends JFrame {
 		JButton btnNewButton = new JButton("Vaciar");
 		btnNewButton.setBounds(10, 227, 89, 23);
 		contentPane.add(btnNewButton);
-		
+		//Pantalla
 		JTextArea textArea = new JTextArea();
 		textArea.setBounds(10, 46, 399, 170);
 		contentPane.add(textArea);
