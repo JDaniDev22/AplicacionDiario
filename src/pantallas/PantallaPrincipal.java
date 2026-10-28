@@ -4,19 +4,37 @@
  */
 package pantallas;
 
-/**
- *
- * @author danim
- */
+import java.awt.Component;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileSystemView;
+import pantallas.PanelNota;
+
+
 public class PantallaPrincipal extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(PantallaPrincipal.class.getName());
-
+    private File carpetaNotas;
+    
+    private ArrayList<File> notas;
     /**
      * Creates new form PantallaPrincipal
      */
     public PantallaPrincipal() {
         initComponents();
+        carpetaNotas= new File(FileSystemView.getFileSystemView().getDefaultDirectory().getPath(),"Notas");
+        campoNombreNota.setText("NuevaNota.txt");
+        this.setVisible(true);
+        notas = hayNotas();
+        
+        
+        
+        
+        
+        
     }
 
     /**
@@ -28,22 +46,183 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        panelTabulaciones = new javax.swing.JTabbedPane();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        botonCrearNota = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        Jscroll = new javax.swing.JScrollPane();
+        campoNombreNota = new javax.swing.JTextPane();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Aplicación Diario");
+        setBackground(new java.awt.Color(255, 214, 101));
+        setResizable(false);
+
+        jPanel1.setBackground(new java.awt.Color(255, 201, 76));
+        jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(246, 124, 8), 1, true));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(204, 98, 192));
+        jLabel1.setText("Aplicación de Notas");
+
+        jPanel2.setToolTipText("");
+
+        jLabel2.setText("Opciones:");
+
+        botonCrearNota.setText("Crear nueva nota");
+        botonCrearNota.addActionListener(this::botonCrearNotaActionPerformed);
+
+        jButton2.setText("Abrir Nota");
+        jButton2.addActionListener(this::jButton2ActionPerformed);
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.addActionListener(this::jComboBox1ActionPerformed);
+
+        campoNombreNota.setToolTipText("Nombre Nota");
+        Jscroll.setViewportView(campoNombreNota);
+        campoNombreNota.getAccessibleContext().setAccessibleName("");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(Jscroll)
+                            .addComponent(botonCrearNota, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(172, 172, 172)
+                        .addComponent(jButton2)
+                        .addGap(27, 27, 27)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(284, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton2)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Jscroll, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(botonCrearNota)
+                .addContainerGap(138, Short.MAX_VALUE))
+        );
+
+        jComboBox1.getAccessibleContext().setAccessibleName("Nota A Abrir");
+
+        panelTabulaciones.addTab("Pestaña Principal", jPanel2);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(panelTabulaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 804, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(39, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panelTabulaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(33, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Añadir comprobación de si la nota existe
+     * @param evt 
+     */
+    private void botonCrearNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCrearNotaActionPerformed
+        //Boton Crear Nueva nota
+        String nombreNota = campoNombreNota.getText();
+        if(!nombreNota.isEmpty()){
+            File notaACrear = new File(carpetaNotas,nombreNota);
+            try {
+                notaACrear.createNewFile();
+                panelTabulaciones.addTab(nombreNota, new PanelNota(notaACrear));
+            //TODO  
+            } catch (IOException ex) {
+                mostrarMensajeError(ex.getMessage());
+            }
+        }
+            
+    }//GEN-LAST:event_botonCrearNotaActionPerformed
+    
+    /**
+     * Muestra los mensajes de error que se le introduzcan
+     * @param cadenaError 
+     */
+    public void mostrarMensajeError(String cadenaError){
+        JOptionPane.showMessageDialog(this, cadenaError,"Error",JOptionPane.ERROR_MESSAGE);
+    }
+    
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        //Boton Abrir nota
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    /**
+     * Comprueba si existe la carpeta Notas en Documentos, si no existe la crea.
+     * Si existe la carpeta, comprueba si tiene notas y las devuelve.
+     * 
+     * FileSystemView.getFileSystemView().getDefaultDirectory().getPath() te dá la ruta de documents, sin tener porque saber el usuario
+     * Encontrado en: https://stackoverflow.com/questions/9677692/getting-my-documents-path-in-java
+     * 
+     * @return Un ArrayList de nombres de notas,si está vacio lo devuelve nulo.
+     */
+    public ArrayList<File> hayNotas() {
+        
+        ArrayList<File> archivosEncontrados;
+        
+        if (carpetaNotas.exists()) {
+            archivosEncontrados = new ArrayList<File>();
+            File[] archivos = carpetaNotas.listFiles();
+            
+        }else{
+            carpetaNotas.mkdir();
+            JOptionPane.showMessageDialog(this, "Se ha creado la carpeta Notas");
+            archivosEncontrados=null;
+        }
+
+        return archivosEncontrados;
+
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -70,5 +249,15 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JScrollPane Jscroll;
+    private javax.swing.JButton botonCrearNota;
+    private javax.swing.JTextPane campoNombreNota;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JTabbedPane panelTabulaciones;
     // End of variables declaration//GEN-END:variables
 }
