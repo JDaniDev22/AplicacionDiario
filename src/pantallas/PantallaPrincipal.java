@@ -28,7 +28,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         carpetaNotas= new File(FileSystemView.getFileSystemView().getDefaultDirectory().getPath(),"Notas");
         campoNombreNota.setText("NuevaNota.txt");
         this.setVisible(true);
-        notas = hayNotas();
         rellenarComboBoxNotas();
         
         
@@ -37,8 +36,18 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
     public void rellenarComboBoxNotas() {
         /**
-         * Rellenar combobox notas
+         * Rellenar combobox notas primero limpiandolo 
          */
+        notas = hayNotas();
+        //Mientras que haya items en la combo box borrarlos.
+        while(listaNotasMostradasComboBox.getItemCount()>0){
+            listaNotasMostradasComboBox.removeItem(listaNotasMostradasComboBox.getItemAt(0));
+        }
+        
+//        for (int i = 0; i < listaNotasMostradasComboBox.getItemCount(); i++) {
+//            listaNotasMostradasComboBox.removeItem(listaNotasMostradasComboBox.getItemAt(i));
+//        }
+        
         for (File nota : notas) {
             listaNotasMostradasComboBox.addItem(nota.getName());
         }
@@ -193,6 +202,10 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, cadenaError,"Error",JOptionPane.ERROR_MESSAGE);
     }
     
+    /**
+     * Abre la nota seleccionada del combobox
+     * @param evt 
+     */
     private void botonAbrirNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAbrirNotaActionPerformed
         //Boton Abrir nota
         File notaAAbrir = new File(carpetaNotas,listaNotasMostradasComboBox.getSelectedItem().toString());
