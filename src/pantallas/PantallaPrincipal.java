@@ -34,6 +34,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         
     }
 
+    
+    
     public void rellenarComboBoxNotas() {
         /**
          * Rellenar combobox notas primero limpiandolo 

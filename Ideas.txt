@@ -2,6 +2,6 @@ Ideas:
 -Botón cerrar tab.
 -Botón borrar nota.
 -Customización pantalla: 
-X Tema oscuro,colores,fuentes,.
+X Tema oscuro,colores,fuentes...
 X Barra de tareas con opciones desplegables.
 -Previsualización de la nota

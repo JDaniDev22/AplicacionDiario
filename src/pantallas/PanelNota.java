@@ -42,6 +42,7 @@ public class PanelNota extends javax.swing.JPanel {
         botonGuardar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         campoNotaEscrita = new javax.swing.JTextPane();
+        botonGuardarSalir = new javax.swing.JButton();
 
         botonRecargar.setText("Recargar");
         botonRecargar.addActionListener(this::botonRecargarActionPerformed);
@@ -51,6 +52,9 @@ public class PanelNota extends javax.swing.JPanel {
 
         jScrollPane2.setViewportView(campoNotaEscrita);
 
+        botonGuardarSalir.setText("Guardar y Salir");
+        botonGuardarSalir.addActionListener(this::botonGuardarSalirActionPerformed);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -58,14 +62,16 @@ public class PanelNota extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(62, 62, 62)
+                        .addGap(43, 43, 43)
                         .addComponent(botonRecargar)
-                        .addGap(76, 76, 76)
-                        .addComponent(botonGuardar))
+                        .addGap(31, 31, 31)
+                        .addComponent(botonGuardar)
+                        .addGap(18, 18, 18)
+                        .addComponent(botonGuardarSalir))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -75,7 +81,8 @@ public class PanelNota extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonGuardar)
-                    .addComponent(botonRecargar))
+                    .addComponent(botonRecargar)
+                    .addComponent(botonGuardarSalir))
                 .addContainerGap(34, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -95,6 +102,11 @@ public class PanelNota extends javax.swing.JPanel {
         cargarNota();
     }//GEN-LAST:event_botonRecargarActionPerformed
 
+    private void botonGuardarSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarSalirActionPerformed
+       botonGuardarActionPerformed(evt);
+       //Cerrar panel actual
+    }//GEN-LAST:event_botonGuardarSalirActionPerformed
+
     public void cargarNota(){
         String textoACargar="";
         try(FileReader flujoLectura= new FileReader(nota)){
@@ -109,6 +121,7 @@ public class PanelNota extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonGuardar;
+    private javax.swing.JButton botonGuardarSalir;
     private javax.swing.JButton botonRecargar;
     private javax.swing.JTextPane campoNotaEscrita;
     private javax.swing.JScrollPane jScrollPane2;
