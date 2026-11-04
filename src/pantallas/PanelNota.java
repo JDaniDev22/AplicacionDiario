@@ -18,13 +18,15 @@ import javax.swing.JOptionPane;
 public class PanelNota extends javax.swing.JPanel {
 
     private File nota;
+    private PantallaPrincipal pantalla;
     /**
      * Creates new form PanelNota
      */
-    public PanelNota(File nota) {
+    public PanelNota(File nota,PantallaPrincipal pantalla) {
         initComponents();
         this.nota=nota;
         cargarNota();
+        this.pantalla=pantalla;
     }
 
     /**
@@ -58,7 +60,7 @@ public class PanelNota extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(62, 62, 62)
                         .addComponent(botonRecargar)
-                        .addGap(75, 75, 75)
+                        .addGap(76, 76, 76)
                         .addComponent(botonGuardar))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(20, 20, 20)
@@ -70,16 +72,16 @@ public class PanelNota extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonRecargar)
-                    .addComponent(botonGuardar))
-                .addContainerGap(21, Short.MAX_VALUE))
+                    .addComponent(botonGuardar)
+                    .addComponent(botonRecargar))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
-        
+        pantalla.rellenarComboBoxNotas();
         String cadenaAGuardar=campoNotaEscrita.getText();
         
         try(FileWriter flujoEscritura = new FileWriter(nota)){
